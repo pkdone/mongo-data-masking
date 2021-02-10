@@ -99,6 +99,7 @@ var simpleMasksPt1Stage = {
                         {'$toString': {'$floor': {'$multiply': [{'$rand': {}}, 10]}}},
                         {'$toString': {'$floor': {'$multiply': [{'$rand': {}}, 10]}}},
                      ]},
+                     
     // 2. PARTIAL TEXT OBFUSCATION RETAINING LAST NUMBER OF CHARS, eg: '1234567890123456' -> 'XXXXXXXXXXXX3456'
     'card_num': {'$concat': [
                     'XXXXXXXXXXXX',
