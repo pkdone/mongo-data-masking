@@ -31,7 +31,7 @@ Via the open Mongo Shell, execute the following to remove the old `testdata` dat
 ```javascript
 use testdata;
 
-db.payments.drop();
+db.dropDatabase();
 
 db.payments.insertMany([
     {
