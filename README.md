@@ -159,9 +159,9 @@ var simpleMasksPt2Stage = {
 var redactFieldsStage = {
     // 10. EXCLUDE SUB-DOCUMENT DATA BASED ON A FIELD'S VALUE, eg. if customer_info.category = SENSITIVE
     '$cond': {
-        'if'  : {$eq: ['$category', 'SENSITIVE']},
-        'then': "$$PRUNE",
-        'else': "$$DESCEND"
+        'if'  : {'$eq': ['$category', 'SENSITIVE']},
+        'then': '$$PRUNE',
+        'else': '$$DESCEND'
     }
 };
 
