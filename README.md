@@ -145,7 +145,7 @@ var simpleMasksPt1Stage = {
                                 return hex_md5(id);
                             }
                       }},
-}
+};
 
 
 // PART 2 OF PIPELINE
