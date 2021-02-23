@@ -15,11 +15,11 @@ The example aggregation pipeline used in this project will be used to transform 
 ## Prerequisites
 
 * A [MongoDB database](https://docs.mongodb.com/manual/installation/) is running and accessible locally or over a network, using MongoDB version 4.4 or greater
-* The [Mongo Shell](https://docs.mongodb.com/manual/mongo/) can be run from the local workstation
+* The [Mongo Shell](https://www.mongodb.com/try/download/shell) can be run from the local workstation (the instructions below assume the newer `mongosh` version of the shell has been installed, rather than the _legacy_ `mongos` shell bundled with `mongod` database installer, although either is fine to use)
 * From a command-line terminal on the workstation, the Mongo Shell has been launched referencing a MongoDB database deployment, where the connecting user has sufficient rights to create and modify any database. For example, execute the following (first changing the URL where necessary):
 
 ```bash
-mongo 'mongodb://localhost:27017'
+mongosh 'mongodb://localhost:27017'
 ```
 
 <br/>
@@ -80,7 +80,7 @@ db.payments.insertMany([
     },
 ]);
 
-db.payments.find().pretty();
+db.payments.find();
 ```
 
 <br/>
@@ -183,7 +183,7 @@ var pipeline = [
 __OPTION 1__: To expose the results of the __Data Masked Aggregation On Demand__ from a trusted app tier written in any programming language, this can be simulated from the Mongo Shell, using JavaScript, to execute the following which will generate and return the masked versions of all the records, on the fly:
 
 ```javascript
-db.payments.aggregate(pipeline).pretty();
+db.payments.aggregate(pipeline);
 ```
 
  &nbsp;_NOTE_: Ensure you lock down the `payments` collection to only be accessible by trusted mid-tier application code and not by any consumer applications directly, meaning that the consumers can only access payments data by invoking an API exposed via the mid-tier application (which in turn will invoke `aggregate(pipeline)` to return masked results only).
@@ -194,7 +194,7 @@ __OPTION 2__: To expose a __Data Masked Read-Only View__, from the Mongo Shell e
 
 ```javascript
 db.createView('payments_redacted_view', 'payments', pipeline);
-db.payments_redacted_view.find().pretty();
+db.payments_redacted_view.find();
 ```
 
  &nbsp;_NOTE_: Ensure that you use MongoDB's [RBAC capabilities](https://docs.mongodb.com/manual/core/authorization/) to forbid any access to the underlying `payments` collection, and instead, only allow consumers to have access to the view `payments_redacted_view` and thus only the masked data it will return.
@@ -209,7 +209,7 @@ new_pipeline.push(
     {'$merge': {'into': { 'db': 'testdata', 'coll': 'payments_redacted'}, 'on': '_id',  'whenMatched': 'fail', 'whenNotMatched': 'insert'}}
 );
 db.payments.aggregate(new_pipeline);
-db.payments_redacted.find().pretty();
+db.payments_redacted.find();
 ```
 
  &nbsp;_NOTE_: Ensure afterwards that you either: __1)__ delete the original unmasked `payments` collection, or __2)__ use MongoDB's [RBAC capabilities](https://docs.mongodb.com/manual/core/authorization/) to prevent access to the underlying `payments` collection, thus only allowing consumers to have access to the new masked data `payments_redacted` collection.
@@ -225,7 +225,7 @@ replace_pipeline.push(
     {'$merge': {'into': { 'db': 'testdata', 'coll': 'payments'}, 'on': '_id',  'whenMatched': 'replace', 'whenNotMatched': 'fail'}}
 );
 db.payments.aggregate(replace_pipeline);
-db.payments.find().pretty();
+db.payments.find();
 ```
 
  &nbsp;_NOTE_: Ensure that no other processes are inserting, updating or deleting records in the `persons` collection whilst the masking aggregation pipeline is running.
