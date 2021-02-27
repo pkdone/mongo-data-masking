@@ -15,7 +15,7 @@ The example aggregation pipeline used in this project will be used to transform 
 ## Prerequisites
 
 * A [MongoDB database](https://docs.mongodb.com/manual/installation/) is running and accessible locally or over a network, using MongoDB version 4.4 or greater
-* The [Mongo Shell](https://www.mongodb.com/try/download/shell) can be run from the local workstation (the instructions below assume the newer `mongosh` version of the shell has been installed, rather than the _legacy_ `mongos` shell bundled with the `mongod` database installer, although either is fine to use)
+* The [Mongo Shell](https://www.mongodb.com/try/download/shell) can be run from the local workstation (the instructions below assume the newer `mongosh` version of the shell has been installed, rather than the _legacy_ `mongo` shell bundled with the `mongod` database installer, although either is fine to use)
 * From a command-line terminal on the workstation, the Mongo Shell has been launched referencing a MongoDB database deployment, where the connecting user has sufficient rights to create and modify any database. For example, execute the following (first changing the URL where necessary):
 
 ```bash
