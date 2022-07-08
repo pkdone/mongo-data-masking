@@ -2,9 +2,9 @@
 
 ## Introduction
 
-Example project showing how a MongoDB's aggregation pipeline can be used to perform data masking on all the records (documents) contained in a collection, where the changes are non-reversible. For more context on why data masking is an important common requirement and how this can be effectively achieved in MongoDB, first read the blog post that accompanies this project at:
+Example project showing how a MongoDB's aggregation pipeline can be used to perform data masking on all the records (documents) contained in a collection, where the changes are non-reversible. For more context on why data masking is an important common requirement and how this can be effectively achieved in MongoDB, first read the blog post that accompanies this project, [MongoDB Data Masking Examples blog post](https://pauldone.blogspot.com/2021/02/mongdb-data-masking.html).
 
-* [MongoDB Data Masking Examples blog post](https://pauldone.blogspot.com/2021/02/mongdb-data-masking.html) 
+Also, in the book [Practical MongoDB Aggregations](https://www.practical-mongodb-aggregations.com/) by this project's author, there is the [Mask Sensitive Fields chapter](https://www.practical-mongodb-aggregations.com/examples/securing-data/mask-sensitive-fields.html) which describes this same topic.
 
 The example aggregation pipeline used in this project will be used to transform some example __card payments__ records, shown in the left hand side of the screenshot below, into masked records, shown on the right hand side of the screenshot, where sensitive fields have been redacted.
 
